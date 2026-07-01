@@ -27,10 +27,6 @@ logs/
 reports/pdfs/
 reports/*.pdf
 
-# Trained Models
-models/registry/
-*.pkl
-
 # Data
 data/raw/
 data/processed/
