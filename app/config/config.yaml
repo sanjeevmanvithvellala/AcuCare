@@ -1,0 +1,71 @@
+# Healthcare AI Risk Prediction Platform Configuration
+
+project:
+  name: Healthcare-AI-Risk-Prediction
+  version: 1.0.0
+  random_state: 42
+
+paths:
+  raw_data_dir: data/raw
+  processed_data_dir: data/processed
+  model_registry: models/registry
+  database: data/healthcare_platform.db
+  reports_dir: reports
+  logs_dir: logs
+  log_file: logs/app.log
+
+data:
+  raw_filename: diabetic_data.csv
+  target_col: readmitted
+  test_size: 0.2
+  val_size: 0.1
+  features_to_drop:
+    - weight
+    - payer_code
+    - medical_specialty  # dropping since it has ~50% missing values and can lead to overfitting or high cardinality issues, but we will impute if requested. Let's list it in drop but we can also handle it in preprocessor.
+    - encounter_id
+    - patient_nbr
+
+mlflow:
+  tracking_uri: sqlite:///data/mlflow.db
+  experiment_name: Healthcare_Readmission_Risk
+
+models:
+  logistic_regression:
+    C: [0.01, 0.1, 1.0, 10.0]
+    penalty: ['l2']
+    solver: ['lbfgs']
+    max_iter: [1000]
+  
+  decision_tree:
+    max_depth: [5, 10, 15]
+    min_samples_split: [2, 5, 10]
+    criterion: ['gini', 'entropy']
+  
+  random_forest:
+    n_estimators: [100, 200]
+    max_depth: [10, 15, null]
+    min_samples_split: [2, 5]
+    class_weight: ['balanced']
+  
+  xgboost:
+    n_estimators: [100, 200]
+    max_depth: [3, 5, 7]
+    learning_rate: [0.01, 0.1, 0.2]
+    subsample: [0.8, 1.0]
+
+  gradient_boosting:
+    n_estimators: [100, 200]
+    learning_rate: [0.05, 0.1]
+    max_depth: [3, 5]
+
+llm:
+  model_name: gemini-2.5-flash
+  system_prompt: |
+    You are an expert clinical AI assistant. You will be provided with patient demographic details, medical history, a risk prediction of 30-day hospital readmission, and the top features driving this prediction based on SHAP/LIME values.
+    Your task is to write a highly professional, clear, and actionable clinical explanation.
+    Address the following points:
+    1. A summary of the readmission risk level (e.g. High, Medium, Low) and the probability.
+    2. An explanation of the key clinical drivers (features) that explain this patient's prediction (e.g., number of inpatient stays, specific medication changes, diagnoses).
+    3. Actionable clinical recommendations for care coordination, discharge planning, and follow-up care to mitigate readmission risk.
+    Use professional medical terminology but keep it accessible. Do not include patient identifiers.

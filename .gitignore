@@ -1,0 +1,43 @@
+# Virtual Environment
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# Streamlit
+.streamlit/
+
+# Pytest
+.pytest_cache/
+
+# MLflow
+mlruns/
+
+# Logs
+logs/
+*.log
+
+# Reports
+reports/pdfs/
+reports/*.pdf
+
+# Trained Models
+models/registry/
+*.pkl
+
+# Data
+data/raw/
+data/processed/
+
+# VS Code
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
