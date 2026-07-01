@@ -712,8 +712,9 @@ elif page == "API Documentation":
 # -----------------
 # PAGE 8: ABOUT
 # -----------------
+st.sidebar.write("Backend:", BACKEND_URL)
 elif page == "About":
-    st.title("ℹ️ About the CareRisk AI Platform")
+    st.title("ℹ️ About the AcuCare Platform")
     st.markdown(
         "This platform represents a **Production-Quality Healthcare AI Risk Prediction Platform** "
         "built to demonstrate software engineering and machine learning best practices.\n\n"
