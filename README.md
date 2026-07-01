@@ -1,6 +1,6 @@
-# CareRisk AI - Healthcare AI Risk Prediction Platform
+# AcuCare AI - Healthcare AI Risk Prediction Platform
 
-CareRisk AI is a production-quality, end-to-end clinical decision support platform designed to predict 30-day hospital readmission risk for diabetic patients using the **Diabetes 130-US hospitals dataset**. 
+AcuCare AI is a production-quality, end-to-end clinical decision support platform designed to predict 30-day hospital readmission risk for diabetic patients using the **Diabetes 130-US hospitals dataset**. 
 
 The platform leverages explainable Machine Learning classifiers (such as XGBoost, Random Forest, Calibrated SVM) paired with generative LLM clinical reasoning (Gemini API) to provide care teams with both quantitative risk probabilities and structured, plain-English patient discharge recommendations.
 
@@ -82,7 +82,7 @@ Healthcare-AI-Risk-Prediction/
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/Healthcare-AI-Risk-Prediction.git
+   git clone https://github.com/yourusername/AcuCare.git
    cd Healthcare-AI-Risk-Prediction
    ```
 
