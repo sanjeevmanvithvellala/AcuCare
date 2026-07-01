@@ -30,7 +30,10 @@ st.set_page_config(
 )
 
 # Backend URL (default)
-BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
+BACKEND_URL = os.environ.get(
+    "BACKEND_URL",
+    "https://acucare.onrender.com"
+)
 
 # Load CSS styles
 def load_css():
